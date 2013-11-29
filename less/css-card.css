@@ -1,0 +1,53 @@
+.tile {
+  position: relative;
+  z-index: 1;
+  float: left;
+}
+.tile {
+  -webkit-perspective: 260px;
+  margin: 2px;
+}
+.card {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  /* Safari and Chrome */
+  transition: all 1.0s ease-in;
+  -webkit-transition: all 1.0s ease-in;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 10px;
+}
+.tile.tile-flip .card {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  box-shadow: -5px 5px 5px #aaa;
+  /* Safari and Chrome */
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-color: gray;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Chrome and Safari */
+  -moz-backface-visibility: hidden;
+  /* Firefox */
+  -ms-backface-visibility: hidden;
+  /* Internet Explorer */
+}
+.face.card-back {
+  display: block;
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  /* Safari and Chrome */
+  box-sizing: border-box;
+  padding: 10px;
+  color: white;
+  text-align: center;
+  background-color: #aaa;
+}
+/*# sourceMappingURL=css-card.css.map */
