@@ -5,7 +5,6 @@
 }
 .tile {
   -webkit-perspective: 260px;
-  margin: 2px;
 }
 .card {
   transform-style: preserve-3d;

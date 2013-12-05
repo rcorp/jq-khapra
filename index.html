@@ -7,9 +7,9 @@
 	<body>
 		<button> OK </button>
 
-		<div class="sliced" style="width: 800px">
-			<img src="images/bday.jpg" />
-			<img src="images/bday2.jpg"/>
+		<div class="sliced">
+			<img src="images/blue_wheel.png" />
+			<img src="images/rcorper_collage_back.jpg"/>
 		</div> 
 
 		<script type="text/javascript">
@@ -49,8 +49,9 @@
 				return this.each(function() {
 
 					var $container = $(this);
-					var width = $container.width(),
-						height = $container.height(),
+					window.c = $container;
+					var width = $container.find('img').width(),
+						height = $container.find('img').height(),
 						$img = $('img', $container),
 						n_tiles = o.x * o.y,
 						tiles = [], $tiles;
@@ -78,9 +79,12 @@
 					$('.card-back', $tiles).css('backgroundImage', 'url('+ $($img[1]).attr('src') +')');
 
 					// Adjust position
-					$tiles.each(function() {
+					$tiles.each(function(e) {
 						var pos = $(this).position();
-						$('.card-front, .card-back', this).css( 'backgroundPosition', -pos.left +'px '+ -pos.top +'px' );
+						var translateX = (e % o.x) * (width / o.x);
+						var translateY = Math.floor (e / o.x) * (height / o.y);
+
+						$('.card-front, .card-back', this).css( 'backgroundPosition', -translateX +'px '+ -translateY +'px' );
 					});
 
 					var tilesArr = range( 0, n_tiles, o.random ),
@@ -99,7 +103,7 @@
 
 			}( jQuery, window ));
 
-			$('.sliced').sliced({ x: 4, y: 50, speed: 4000 });
+			$('.sliced').sliced({ x: 6, y: 9, speed: 4000 });
 
 			$('button').click(function() {
 				$('.sliced').trigger('animate');
