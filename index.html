@@ -55,6 +55,7 @@
 						$img = $('img', $container),
 						n_tiles = o.x * o.y,
 						tiles = [], $tiles;
+						//console.log($(container).find('img').width())
 
 					for ( var i = 0; i < n_tiles; i++ ) {
 						tiles.push('<div class="tile"><div class="card"><div class="card-front face"></div><div class="card-back face"></div></div></div>');
@@ -64,7 +65,7 @@
 
 					// Hide original image and insert tiles in DOM
 					$img.hide();
-					$container.after( $tiles );
+					$container.append( $tiles );
 
 					// Set background
 					$tiles.css({
@@ -103,8 +104,7 @@
 
 			}( jQuery, window ));
 
-			$('.sliced').sliced({ x: 6, y: 9, speed: 4000 });
-
+			$('.sliced').sliced({ x: 7, y: 10, speed: 4000 });
 			$('button').click(function() {
 				$('.sliced').trigger('animate');
 			});
