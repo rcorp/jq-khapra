@@ -18,6 +18,8 @@
 			var _defaults = {
 				x: 2, // number of tiles in x axis
 				y: 2, // number of tiles in y axis
+				img_width: 0,
+				img_height: 0,
 				random : true, // animate tiles in random order
 				speed: 2000 // time to clear all times
 			};
@@ -51,8 +53,8 @@
 					var $container = $(this);
 					window.c = $container;
 					//var width = $container.find('img').width(),
-					var width = ( 100 * parseFloat($container.find('img').css('width')) / parseFloat($container.find('img').parent().css('width')) ),
-						height = $container.find('img').height(),
+					var width = ( 100 * parseFloat(o.img_width) / parseFloat($container.find('img').parent().css('width')) ),
+						height = o.img_height,
 						$img = $('img', $container),
 						n_tiles = o.x * o.y,
 						tiles = [], $tiles;
@@ -86,9 +88,9 @@
 					$('.card-back', $tiles).css('backgroundImage', 'url('+ $($img[1]).attr('src') +')');
 
 					//Adjust size
-					var backgroundX = ($container.find('img').width() * 100) / $tiles.width();
-					var backgroundY = ($container.find('img').height() * 100) / $tiles.height();
-					console.log($tiles.width());
+					var backgroundX = (o.img_width * 100) / $tiles.width();
+					var backgroundY = (o.img_height * 100) / $tiles.height();
+					console.log(o.img_width);
 					console.log('backgroundX' , backgroundX);
 					console.log('backgroundY', backgroundY);
 					$('.card-front, .card-back', this).css( 'backgroundSize', backgroundX +'%'+ backgroundY+'%' );
@@ -96,8 +98,8 @@
 					// Adjust position
 					$tiles.each(function(e) {
 						var pos = $(this).position();
-						//var translateX = (e % o.x) * ((width + (6*width)/100) / o.x);
-						var translateX = (e % o.x) * (100/ o.x);
+						var translateX = (e % o.x) * ((width + (37*width)/100) / o.x);
+						//var translateX = (e % o.x) * (100/ o.x);
 						var translateY = Math.floor (e / o.x) * (height / o.y);
 						//console.log(e)
 						console.log('translateX',translateX);
@@ -122,7 +124,7 @@
 
 			}( jQuery, window ));
 
-			$('.sliced').sliced({ x:7, y: 10, speed: 4000 });
+			$('.sliced').sliced({ x:7, y: 10, speed: 4000, img_width: 1050, img_height: 1500 });
 			$('button').click(function() {
 				$('.sliced').trigger('animate');
 			});

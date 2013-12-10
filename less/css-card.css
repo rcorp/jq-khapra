@@ -61,10 +61,10 @@
   height: 1500px;
 }
 
-.sliced img {
+/*.sliced img {
   max-width: 100%;
   height: auto;
-}
+}*/
 
 .card-front, .card-back {
  /* background-size: 157% 1000%;*/ 
