@@ -56,11 +56,8 @@
 						$img = $('img', $container),
 						n_tiles = o.x * o.y,
 						tiles = [], $tiles;
-						console.log('image-width', $container.find('img').width());
-						console.log('image-height', $container.find('img').height());
-						console.log('container-width', $container.find('img').parent().css('width'));
-						console.log('container-height', $container.find('img').parent().css('height'));
-						console.log('width', width);
+						console.log($container.find('img').css('width'));
+						console.log($container.find('img').parent().css('width'));
 					for ( var i = 0; i < n_tiles; i++ ) {
 						tiles.push('<div class="tile"><div class="card"><div class="card-front face"></div><div class="card-back face"></div></div></div>');
 					}
@@ -75,9 +72,9 @@
 					$tiles.css({
 						width: (100 / o.x) + '%',
 						height: height / o.y ,
+						//height: (height / o.y) + '%',
 					});
-					console.log('tile-width',$tiles.css('width'));
-					console.log('tile-height', $tiles.css('height'));
+					console.log($tiles.css('width'));
 
 					//Set the first image as the front side.
 					$('.card-front', $tiles).css('backgroundImage', 'url('+ $($img[0]).attr('src') +')');
@@ -85,21 +82,13 @@
 					//Set the second image as the back side.
 					$('.card-back', $tiles).css('backgroundImage', 'url('+ $($img[1]).attr('src') +')');
 
-					//Adjust size
-					var backgroundX = ($container.find('img').width() * 100) / $tiles.width();
-					var backgroundY = ($container.find('img').height() * 100) / $tiles.height();
-					console.log($tiles.width());
-					console.log('backgroundX' , backgroundX);
-					console.log('backgroundY', backgroundY);
-					$('.card-front, .card-back', this).css( 'backgroundSize', backgroundX +'%'+ backgroundY+'%' );
-
 					// Adjust position
 					$tiles.each(function(e) {
 						var pos = $(this).position();
-						//var translateX = (e % o.x) * ((width + (6*width)/100) / o.x);
-						var translateX = (e % o.x) * (100/ o.x);
+						//var translateX = (e % o.x) * ((width + (27*width)/100) / o.x);
+						var translateX = (e % o.x) * (width/ o.x);
 						var translateY = Math.floor (e / o.x) * (height / o.y);
-						//console.log(e)
+						console.log(e)
 						console.log('translateX',translateX);
 						console.log('translateY',translateY);
 
