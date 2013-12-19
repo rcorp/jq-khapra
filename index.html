@@ -3,6 +3,7 @@
 	<head>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="less/css-card.css">
+		<script type="text/javascript" src="js/jq-khapra.js"></script>
 	</head>
 	<body>
 		<button> OK </button>
@@ -13,116 +14,6 @@
 		</div> 
 
 		<script type="text/javascript">
-			(function( $, window ) {
-
-			var _defaults = {
-				x: 2, // number of tiles in x axis
-				y: 2, // number of tiles in y axis
-				img_width: 0,
-				img_height: 0,
-				random : true, // animate tiles in random order
-				speed: 2000 // time to clear all times
-			};
-
-			/**
-			* range Get an array of numbers within a range
-			* @param min {number} Lowest number in array
-			* @param max {number} Highest number in array
-			* @param rand {bool} Shuffle array
-			* @return {array}
-			*/
-			function range( min, max, rand ) {
-				var arr = ( new Array( ++max - min ) )
-				.join('.').split('.')
-				.map(function( v,i ){ return min + i })
-				return rand
-				? arr.map(function( v ) { return [ Math.random(), v ] })
-					 .sort().map(function( v ) { return v[ 1 ] })
-				: arr
-			}
-			
-			// Prevent css3 transitions on load
-			$('body').addClass('css3-preload')
-			$( window ).load(function(){ $('body').removeClass('css3-preload') })
-
-			$.fn.sliced = function( options ) {
-				var o = $.extend( {}, _defaults, options);
-
-				return this.each(function() {
-
-					var $container = $(this);
-					window.c = $container;
-					//var width = $container.find('img').width(),
-					var width = ( 100 * parseFloat(o.img_width) / parseFloat($container.find('img').parent().css('width')) ),
-						height = o.img_height,
-						$img = $('img', $container),
-						n_tiles = o.x * o.y,
-						tiles = [], $tiles;
-						console.log('image-width', $container.find('img').width());
-						console.log('image-height', $container.find('img').height());
-						console.log('container-width', $container.find('img').parent().css('width'));
-						console.log('container-height', $container.find('img').parent().css('height'));
-						console.log('width', width);
-					for ( var i = 0; i < n_tiles; i++ ) {
-						tiles.push('<div class="tile"><div class="card"><div class="card-front face"></div><div class="card-back face"></div></div></div>');
-					}
-
-					$tiles = $( tiles.join('') );
-
-					// Hide original image and insert tiles in DOM
-					$img.hide();
-					$container.append( $tiles );
-					
-					// Set background
-					$tiles.css({
-						width: (100 / o.x) + '%',
-						height: height / o.y ,
-					});
-					console.log('tile-width',$tiles.css('width'));
-					console.log('tile-height', $tiles.css('height'));
-
-					//Set the first image as the front side.
-					$('.card-front', $tiles).css('backgroundImage', 'url('+ $($img[0]).attr('src') +')');
-
-					//Set the second image as the back side.
-					$('.card-back', $tiles).css('backgroundImage', 'url('+ $($img[1]).attr('src') +')');
-
-					//Adjust size
-					var backgroundX = (o.img_width * 100) / $tiles.width();
-					var backgroundY = (o.img_height * 100) / $tiles.height();
-					console.log(o.img_width);
-					console.log('backgroundX' , backgroundX);
-					console.log('backgroundY', backgroundY);
-					$('.card-front, .card-back', this).css( 'backgroundSize', backgroundX +'%'+ backgroundY+'%' );
-
-					// Adjust position
-					$tiles.each(function(e) {
-						var pos = $(this).position();
-						var translateX = (e % o.x) * ((width + (37*width)/100) / o.x);
-						//var translateX = (e % o.x) * (100/ o.x);
-						var translateY = Math.floor (e / o.x) * (height / o.y);
-						//console.log(e)
-						console.log('translateX',translateX);
-						console.log('translateY',translateY);
-
-						$('.card-front, .card-back', this).css( 'backgroundPosition', translateX +'%'+ -translateY +'px' );
-					});
-
-					var tilesArr = range( 0, n_tiles, o.random )
-						tileSpeed = o.speed / n_tiles; // time to clear a single tile
-
-					// Public method
-					$container.on( 'animate', function() {
-						tilesArr.forEach(function( tile, i ) {
-							setTimeout(function(){
-								$tiles.eq( tile ).toggleClass( 'tile-flip' );
-							}, i * tileSpeed );
-						});
-					});
-				});
-			};
-
-			}( jQuery, window ));
 
 			$('.sliced').sliced({ x:7, y: 10, speed: 4000, img_width: 1050, img_height: 1500 });
 			$('button').click(function() {
