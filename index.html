@@ -2,8 +2,18 @@
 <html>
 	<head>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="less/css-card.css">
-		<script type="text/javascript" src="jqkhapra.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="less/jqkhapra.min.css">
+		<script type="text/javascript" src="js/jqkhapra.js"></script>
+		<style type="text/css">
+			.sliced {
+			  width: 40%;
+			  height: 45%;
+			}
+
+			.sliced img {
+			  width: 100%;
+			}
+		</style>
 	</head>
 	<body>
 		<button> OK </button>
@@ -17,7 +27,7 @@
 
 			$('.sliced').sliced({ x:7, y: 10, speed: 4000 });
 			$('button').click(function() {
-				$('.sliced').trigger('animate');
+				$('.sliced').trigger('khapra-flip');
 			});
 		</script>
 	</body>
