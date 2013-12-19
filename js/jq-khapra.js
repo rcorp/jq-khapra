@@ -1,36 +1,30 @@
 (function( $, window ) {
-
-	var _defaults = {
-		x: 2, // number of tiles in x axis
-		y: 2, // number of tiles in y axis
-		img_width: 0,
-		img_height: 0,
-		random : true, // animate tiles in random order
-		speed: 2000 // time to clear all times
-	};
-
-	/**
-	* range Get an array of numbers within a range
-	* @param min {number} Lowest number in array
-	* @param max {number} Highest number in array
-	* @param rand {bool} Shuffle array
-	* @return {array}
-	*/
-	function range( min, max, rand ) {
-		var arr = ( new Array( ++max - min ) )
-		.join('.').split('.')
-		.map(function( v,i ){ return min + i })
-		return rand
-		? arr.map(function( v ) { return [ Math.random(), v ] })
-			 .sort().map(function( v ) { return v[ 1 ] })
-		: arr
-	}
 	
-	// Prevent css3 transitions on load
-	$('body').addClass('css3-preload')
-	$( window ).load(function(){ $('body').removeClass('css3-preload') })
-
 	$.fn.sliced = function( options ) {
+		var _defaults = {
+			x: 2, // number of tiles in x axis
+			y: 2, // number of tiles in y axis
+			random : true, // animate tiles in random order
+			speed: 2000 // time to clear all times
+		};
+
+		/**
+		* range Get an array of numbers within a range
+		* @param min {number} Lowest number in array
+		* @param max {number} Highest number in array
+		* @param rand {bool} Shuffle array
+		* @return {array}
+		*/
+		function range( min, max, rand ) {
+			var arr = ( new Array( ++max - min ) )
+			.join('.').split('.')
+			.map(function( v,i ){ return min + i })
+			return rand
+			? arr.map(function( v ) { return [ Math.random(), v ] })
+				 .sort().map(function( v ) { return v[ 1 ] })
+			: arr
+		}
+		
 		var o = $.extend( {}, _defaults, options);
 
 		return this.each(function() {

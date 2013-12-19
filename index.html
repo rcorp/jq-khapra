@@ -3,7 +3,7 @@
 	<head>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="less/css-card.css">
-		<script type="text/javascript" src="js/jq-khapra.js"></script>
+		<script type="text/javascript" src="jqkhapra.min.js"></script>
 	</head>
 	<body>
 		<button> OK </button>
@@ -15,7 +15,7 @@
 
 		<script type="text/javascript">
 
-			$('.sliced').sliced({ x:7, y: 10, speed: 4000, img_width: 1050, img_height: 1500 });
+			$('.sliced').sliced({ x:7, y: 10, speed: 4000 });
 			$('button').click(function() {
 				$('.sliced').trigger('animate');
 			});
