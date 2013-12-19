@@ -3,11 +3,7 @@
   z-index: 1;
   float: left;
 }
-/*
-.tile:nth-child(10) {
-  position: relative;
-  z-index: 1;
-}*/
+
 
 .tile {
   -webkit-perspective: 260px;
@@ -34,7 +30,6 @@
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
-  background-color: gray;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   /* Chrome and Safari */
@@ -57,15 +52,10 @@
 /*# sourceMappingURL=css-card.css.map */
 
 .sliced {
-  width: 85%;
-  height: 1500px;
+  width: 40%;
+  height: 45%;
 }
 
-/*.sliced img {
-  max-width: 100%;
-  height: auto;
-}*/
-
-.card-front, .card-back {
- /* background-size: 157% 1000%;*/ 
+.sliced img {
+  width: 100%;
 }
